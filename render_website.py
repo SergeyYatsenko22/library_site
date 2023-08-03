@@ -9,8 +9,8 @@ from more_itertools import chunked
 
 
 
-def books(books):
-    with open(books, "r", encoding="utf-8") as my_file:
+def books(books_path):
+    with open(books_path, "r", encoding="utf-8") as my_file:
         books_json = my_file.read()
 
     books = json.loads(books_json)
@@ -19,7 +19,6 @@ def books(books):
 
 
 def main():
-    # print(os.sep)
     parser = argparse.ArgumentParser(description="Путь к файлу, содержащему базу данных для сайта")
     parser.add_argument('--path', help='Путь к файлу', default='books/books_json')
     args = parser.parse_args()
@@ -32,21 +31,20 @@ def main():
 
     template = env.get_template('template.html')
 
-    cards_by_two = list(chunked(books(books_path), 2))
+    os.makedirs('pages')
 
-    print(cards_by_two)
+    pages = list(chunked(books(books_path), 20))
 
-    # for card in cards_by_two:
-    #     print(card)
-    #     print()
+    for index, book in enumerate (pages):
 
-    rendered_page = template.render(
-        cards_divided=cards_by_two,
-        # book_cards=books(books_path),
-    )
+        divided_by_columns = list(chunked(book, 2))
+        rendered_page = template.render(
+            book_cards=divided_by_columns,
+        )
 
-    with open('index.html', 'w', encoding="utf8") as file:
-        file.write(rendered_page)
+        with open(os.path.join('pages', f'index{index}.html'), 'w', encoding="utf8") as file:
+            file.write(rendered_page)
+
 
     server = HTTPServer(('0.0.0.0', 8000), SimpleHTTPRequestHandler)
     server.serve_forever()

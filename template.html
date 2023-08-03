@@ -13,7 +13,7 @@
   <body>
     <div class="container">
       <!-- <div class="row"> -->
-      {% for card in cards_divided %}
+      {% for card in book_cards %}
         <div class="row">
           {% for book_card in card %}
           <div class="col-lg-4 mb-5 col-md-6">
@@ -26,7 +26,6 @@
                   <div class="card-body">
                     <h5 class="card-title">{{book_card.title}}</h5>
                     <p class="card-text">{{book_card.author}}</p>
-                    <!-- <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p> -->
                     <p><a href="{{book_card.text_path|urlencode}}" target="_blank" rel="noopener noreferrer">Читать</a> </p>                   
                   </div>
                 </div>

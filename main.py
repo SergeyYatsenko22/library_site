@@ -60,8 +60,8 @@ def parse_book_page(content, book_url, folder):
         'comments': comments,
         'image_url': image,
         # 'image_name': f'{book_id}.jpg',
-        'image_path': f'{folder}/{book_id}.jpg',
-        'text_path': f'{folder}/{book_id}-{title}.txt',
+        'image_path': f'../{folder}/{book_id}.jpg',
+        'text_path': f'../{folder}/{book_id}-{title}.txt',
     }
     return book
 
