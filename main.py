@@ -61,6 +61,7 @@ def parse_book_page(content, book_url, folder):
         'image_url': image,
         # 'image_name': f'{book_id}.jpg',
         'image_path': f'{folder}/{book_id}.jpg',
+        'text_path': f'{folder}/{book_id}-{title}.txt',
     }
     return book
 
@@ -157,9 +158,9 @@ def main():
                     parsed_book = parse_book_page(book_response, book_url, args.dest_folder)
                     books.append(parsed_book)
 
-                    # if not args.skip_txt:
-                    #     download_txt(parsed_book['id'], parsed_book['title'], path)
-                    #
+                    if not args.skip_txt:
+                        download_txt(parsed_book['id'], parsed_book['title'], path)
+
                     if not args.skip_img:
                         download_image(parsed_book['id'], parsed_book['image_url'], path)
                     break

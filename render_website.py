@@ -34,13 +34,15 @@ def main():
 
     cards_by_two = list(chunked(books(books_path), 2))
 
-    for card in cards_by_two:
-        print(card)
-        print()
+    print(cards_by_two)
+
+    # for card in cards_by_two:
+    #     print(card)
+    #     print()
 
     rendered_page = template.render(
         cards_divided=cards_by_two,
-        book_cards=books(books_path),
+        # book_cards=books(books_path),
     )
 
     with open('index.html', 'w', encoding="utf8") as file:
