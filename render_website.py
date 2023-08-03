@@ -1,9 +1,11 @@
+import itertools
 from http.server import HTTPServer, SimpleHTTPRequestHandler
 from jinja2 import Environment, FileSystemLoader, select_autoescape
 import json
 import argparse
 import os
 # import dotenv
+from more_itertools import chunked
 
 
 
@@ -30,7 +32,14 @@ def main():
 
     template = env.get_template('template.html')
 
+    cards_by_two = list(chunked(books(books_path), 2))
+
+    for card in cards_by_two:
+        print(card)
+        print()
+
     rendered_page = template.render(
+        cards_divided=cards_by_two,
         book_cards=books(books_path),
     )
 

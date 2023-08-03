@@ -11,22 +11,35 @@
     <title>Library</title>
   </head>
   <body>
-    {% for book_card in book_cards %}
-      <div class="card mb-3" style="max-width: 540px;">
-        <div class="row no-gutters">
-          <div class="col-md-4">
-            <img src={{book_card.image_path|urlencode}} class="card-img" alt={{book_card.id}}>
-          </div>
-          <div class="col-md-8">
-            <div class="card-body">
-              <h5 class="card-title">{{book_card.title}}</h5>
-              <p class="card-text">{{book_card.author}}</p>
-              <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+    <div class="container">
+      <!-- <div class="row"> -->
+      {% for card in cards_divided %}
+        <div class="row">
+          {% for book_card in card %}
+          <div class="col-lg-4 mb-5 col-md-6">
+            <div class="card mb-3" style="max-width: 540px;">
+              <div class="row no-gutters">
+                <div class="col-md-4">
+                  <img src={{book_card.image_path|urlencode}} class="card-img" alt={{book_card.id}}>
+                </div>
+                <div class="col-md-8">
+                  <div class="card-body">
+                    <h5 class="card-title">{{book_card.title}}</h5>
+                    <p class="card-text">{{book_card.author}}</p>
+                    <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
+          {% endfor %}
+          <div class="w-100"></div>  
         </div>
-      </div>
-    {% endfor %}
+      {% endfor %}
+      <!-- </div> -->
+    </div>
+      
+    
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
