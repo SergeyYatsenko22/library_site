@@ -34,15 +34,17 @@ def main():
     os.makedirs('pages')
 
     pages = list(chunked(books(books_path), 20))
-
+    # print(len(pages))
     for index, book in enumerate (pages):
 
         divided_by_columns = list(chunked(book, 2))
         rendered_page = template.render(
             book_cards=divided_by_columns,
+            pages=len(pages),
+            current_page=index+1
         )
 
-        with open(os.path.join('pages', f'index{index}.html'), 'w', encoding="utf8") as file:
+        with open(os.path.join('pages', f'index{index+1}.html'), 'w', encoding="utf8") as file:
             file.write(rendered_page)
 
 

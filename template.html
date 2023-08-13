@@ -10,6 +10,42 @@
 
     <title>Library</title>
   </head>
+  <nav aria-label="Page navigation example" class="mt-5">
+    <ul class="pagination justify-content-center">
+      {% if current_page == 1 %}
+        <li class="page-item disabled">
+          <span class="page-link">Назад</span>
+        </li>
+      {% else %}
+        <li class="page-item">
+          <a class="page-link" href="index{{ current_page - 1 }}.html">Назад</a>
+        </li>
+      {% endif %}
+       {% for page in range(1, pages + 1) %}
+        {% if page == current_page %}
+          <li class="page-item active" aria-current="page">
+            <span class="page-link">
+              {{ page }}
+              <span class="sr-only">(current)</span>
+            </span>
+          </li>
+        {% else %}
+          <li class="page-item">
+            <a class="page-link" href="index{{ page }}.html">{{ page }}</a>
+          </li>
+        {% endif %}
+       {% endfor %}
+       {% if current_page == pages %}
+        <li class="page-item disabled">
+          <span class="page-link">Вперёд</span>
+        </li>
+      {% else %}
+        <li class="page-item">
+          <a class="page-link" href="index{{ current_page + 1 }}.html">Вперёд</a>
+        </li>
+      {% endif %}
+    </ul>
+  </nav>
   <body>
     <div class="container">
       <!-- <div class="row"> -->
