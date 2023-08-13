@@ -59,7 +59,6 @@ def parse_book_page(content, book_url, folder):
         'genres': genres,
         'comments': comments,
         'image_url': image,
-        # 'image_name': f'{book_id}.jpg',
         'image_path': f'../{folder}/{book_id}.jpg',
         'text_path': f'../{folder}/{book_id}-{title}.txt',
     }
@@ -73,7 +72,6 @@ def download_txt(book_id, title, folder):
     book_downloading_response = requests.get(downloaded_book_url,
                                              params=payload)
     book_downloading_response.raise_for_status()
-    # check_for_redirect(book_downloading_response)
 
     file_name = f'{book_id}-{sanitize_filename(title)}.txt'
     with open(os.path.join(folder, file_name), 'wb') as file:

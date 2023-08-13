@@ -1,10 +1,8 @@
-import itertools
 from http.server import HTTPServer, SimpleHTTPRequestHandler
 from jinja2 import Environment, FileSystemLoader, select_autoescape
 import json
 import argparse
 import os
-# import dotenv
 from more_itertools import chunked
 
 
@@ -14,7 +12,6 @@ def books(books_path):
         books_json = my_file.read()
 
     books = json.loads(books_json)
-    # print(books)
     return(books)
 
 
@@ -34,7 +31,6 @@ def main():
     os.makedirs('pages')
 
     pages = list(chunked(books(books_path), 20))
-    # print(len(pages))
     for index, book in enumerate (pages):
 
         divided_by_columns = list(chunked(book, 2))
