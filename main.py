@@ -56,7 +56,7 @@ def parse_book_page(content, book_url, folder):
         'id': book_id,
         'title': title,
         'author': author,
-        'genre': genres,
+        'genres': genres,
         'comments': comments,
         'image_url': image,
         # 'image_name': f'{book_id}.jpg',
